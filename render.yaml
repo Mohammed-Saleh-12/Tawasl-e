@@ -8,3 +8,6 @@ services:
       pip install -r server/ai-scripts/requirements.txt
     startCommand: python server/ai-scripts/ai_strict_video_analysis.py
     plan: free 
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.7
