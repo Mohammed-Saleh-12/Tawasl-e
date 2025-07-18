@@ -1,18 +1,10 @@
 services:
   - type: web
-    name: Tawasl-
-    env: node
+    name: tawasl-ai-video-analysis
+    env: python
     buildCommand: |
-      apt-get update && apt-get install -y python3.13 python3.13-distutils python3-pip
-      npm install
-      npm run build
-      python3.13 -m pip install --upgrade pip
-      python3.13 -m pip install -r server/ai-scripts/requirements.txt
-    startCommand: npm start
+      pip install -r server/ai-scripts/requirements.txt
+    plan: free 
     envVars:
-      - key: NODE_ENV
-        value: production
       - key: PYTHON_VERSION
-        value: 3.13.5
-      - key: PYTHONPATH
-        value: /opt/render/project/src/server/ai-scripts 
+        value: 3.11.7
