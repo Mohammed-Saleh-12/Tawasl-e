@@ -8,10 +8,10 @@ RUN apt-get update && \
 
 COPY server/ai-scripts/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install flask
+RUN pip install flask gunicorn
 
 COPY server/ai-scripts/ .
 
 EXPOSE 8000
 
-CMD ["python", "app.py"] 
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "app:app"] 
