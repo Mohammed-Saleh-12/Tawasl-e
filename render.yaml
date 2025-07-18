@@ -25,13 +25,13 @@ services:
       - key: SESSION_SECRET
         generateValue: true
       - key: DATABASE_URL
-        value: postgresql://postgres.koimdkcmypxvrdwzjlqq:mohammed$$2025@aws-0-eu-north-1.pooler.supabase.com:6543/postgres
+        value: <your-supabase-connection-string>
+
   - type: web
     name: tawasl-ai-video-analysis
-    env: python
-    buildCommand: |
-      apt-get update && \
-      apt-get install -y ffmpeg libgl1 libglib2.0-0 && \
-      pip install -r server/ai-scripts/requirements.txt
-    startCommand: python server/ai-scripts/ai_strict_video_analysis.py
+    env: docker
+    dockerfilePath: server/ai-scripts/Dockerfile
     plan: free 
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.7

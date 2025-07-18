@@ -1,6 +1,6 @@
 // Add this at the top for Node.js type support
 // If you see type errors for Node.js built-ins, ensure @types/node is installed and 'node' is in tsconfig.json types.
-import { spawn, spawnSync } from 'child_process';
+import axios from 'axios';
 import { writeFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
@@ -61,61 +61,22 @@ export async function analyzeVideoWithAI(
   mimeType?: string
 ): Promise<AIAnalysisResult> {
   try {
-    if (pythonAvailable) {
-      // Determine file extension based on mimeType
-      let ext = '.mp4';
-      if (mimeType === 'video/webm') ext = '.webm';
-      else if (mimeType === 'video/ogg') ext = '.ogg';
-      else if (mimeType === 'video/mp4') ext = '.mp4';
-      // Add more types as needed
-      const tempVideoPath = join(tmpdir(), `video_analysis_${Date.now()}${ext}`);
-      writeFileSync(tempVideoPath, videoBuffer);
-
-      try {
-        const result = await analyzeWithPython(tempVideoPath, scenario, duration);
-        unlinkSync(tempVideoPath);
-        console.log('[AI Analysis] Used: Real Python Analysis');
-        return result;
-      } catch (error) {
-        console.error('Python analysis failed:', error);
-        unlinkSync(tempVideoPath);
-        // Return zero scores instead of mock analysis
-        return {
-          overallScore: 0,
-          eyeContactScore: 0,
-          facialExpressionScore: 0,
-          gestureScore: 0,
-          postureScore: 0,
-          feedback: ["Analysis failed. Please ensure your video contains a clear view of one person."],
-          confidence: 0.0,
-          analysisDetails: {
-            eyeContact: { percentage: 0, duration: 0, consistency: 0 },
-            facialExpressions: { emotions: { confidence: 0, engagement: 0 }, confidence: 0, engagement: 0 },
-            gestures: { frequency: 0, appropriateness: 0, variety: 0 },
-            posture: { confidence: 0, stability: 0, professionalism: 0 }
-          }
-        };
-      }
-    } else {
-      console.log('Python not available - returning zero scores');
-      return {
-        overallScore: 0,
-        eyeContactScore: 0,
-        facialExpressionScore: 0,
-        gestureScore: 0,
-        postureScore: 0,
-        feedback: ["Python analysis not available. Please ensure your video contains a clear view of one person."],
-        confidence: 0.0,
-        analysisDetails: {
-          eyeContact: { percentage: 0, duration: 0, consistency: 0 },
-          facialExpressions: { emotions: { confidence: 0, engagement: 0 }, confidence: 0, engagement: 0 },
-          gestures: { frequency: 0, appropriateness: 0, variety: 0 },
-          posture: { confidence: 0, stability: 0, professionalism: 0 }
-        }
-      };
-    }
-  } catch (error) {
-    console.error('Video analysis failed:', error);
+    // Convert video buffer to base64
+    const videoData = videoBuffer.toString('base64');
+    // Call the Flask AI service
+    const response = await axios.post(
+      process.env.AI_SERVICE_URL || 'http://tawasl-ai-video-analysis:8000/analyze',
+      {
+        video_path: videoData,
+        scenario,
+        duration
+      },
+      { timeout: 120000 } // 2 minute timeout for long video analysis
+    );
+    return response.data;
+  } catch (error: any) {
+    console.error('AI service error:', error.response?.data || error.message);
+    // Return zero scores instead of mock analysis
     return {
       overallScore: 0,
       eyeContactScore: 0,
@@ -132,54 +93,6 @@ export async function analyzeVideoWithAI(
       }
     };
   }
-}
-
-async function analyzeWithPython(
-  videoPath: string,
-  scenario: string,
-  duration: number
-): Promise<AIAnalysisResult> {
-  return new Promise((resolve, reject) => {
-    const pythonProcess = spawn(PYTHON_PATH, [
-      SCRIPT_PATH,
-      videoPath,
-      scenario,
-      duration.toString()
-    ]);
-
-
-    let output = '';
-    let errorOutput = '';
-
-    pythonProcess.stdout.on('data', (data: Buffer) => {
-      output += data.toString();
-    });
-
-    pythonProcess.stderr.on('data', (data: Buffer) => {
-      errorOutput += data.toString();
-    });
-
-    pythonProcess.on('close', (code: number) => {
-      if (code === 0) {
-        if (errorOutput) {
-          console.warn('Python analysis warning:', errorOutput);
-        }
-        try {
-          const result = JSON.parse(output);
-          resolve(result);
-        } catch (e) {
-          reject(new Error('Failed to parse Python output: ' + output));
-        }
-      } else {
-        reject(new Error('Python analysis failed: ' + errorOutput));
-      }
-    });
-
-    pythonProcess.on('error', (error: Error) => {
-      console.error('Python process error:', error);
-      reject(new Error(`Python process error: ${error.message}`));
-    });
-  });
 }
 
 function generateEnhancedMockAnalysis(scenario: string, duration: number): AIAnalysisResult {
