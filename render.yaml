@@ -25,7 +25,7 @@ services:
       - key: SESSION_SECRET
         generateValue: true
       - key: DATABASE_URL
-        value: <your-supabase-connection-string>
+        value: postgresql://postgres.koimdkcmypxvrdwzjlqq:mohammed$$2025@aws-0-eu-north-1.pooler.supabase.com:6543/postgres
 
   - type: web
     name: tawasl-ai-video-analysis
