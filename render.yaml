@@ -1,32 +1,5 @@
 services:
   - type: web
-    name: tawasl-frontend
-    env: node
-    rootDir: client
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    plan: free
-    envVars:
-      - key: VITE_API_URL
-        value: https://tawasl-backend.onrender.com
-
-  - type: web
-    name: tawasl-backend
-    env: node
-    rootDir: server
-    buildCommand: npm install && npm run build
-    startCommand: node dist/index.js
-    plan: free
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: PORT
-        value: 5000
-      - key: SESSION_SECRET
-        generateValue: true
-      - key: DATABASE_URL
-        value: postgresql://postgres.koimdkcmypxvrdwzjlqq:mohammed$$2025@aws-0-eu-north-1.pooler.supabase.com:6543/postgres
-  - type: web
     name: tawasl-ai-video-analysis
     env: python
     buildCommand: |
