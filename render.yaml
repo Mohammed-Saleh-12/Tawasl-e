@@ -3,10 +3,11 @@ services:
     name: tawasl-ai-video-analysis
     env: python
     buildCommand: |
+      apt-get clean && \
       apt-get update && \
       apt-get install -y ffmpeg libgl1 libglib2.0-0 && \
+      apt-get clean && \
       pip install -r server/ai-scripts/requirements.txt
-    startCommand: python server/ai-scripts/ai_strict_video_analysis.py
     plan: free 
     envVars:
       - key: PYTHON_VERSION
