@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
-import ai_strict_video_analysis
+from ai_strict_video_analysis import analyze
 
 app = Flask(__name__)
 
 @app.route('/analyze', methods=['POST'])
-def analyze():
+def analyze_route():
     data = request.json
     video_path = data.get('video_path')
     scenario = data.get('scenario')
@@ -12,8 +12,7 @@ def analyze():
     if not all([video_path, scenario, duration]):
         return jsonify({"error": "Missing required parameters: video_path, scenario, duration"}), 400
     try:
-        # Assuming ai_strict_video_analysis.main returns a result dict
-        result = ai_strict_video_analysis.main(video_path, scenario, duration)
+        result = analyze(video_path, scenario, duration)
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
