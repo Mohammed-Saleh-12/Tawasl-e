@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(220, 20%, 98%);
+  --foreground: hsl(220, 15%, 10%);
+  --muted: hsl(220, 16%, 92%);
+  --muted-foreground: hsl(220, 10%, 40%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(220, 15%, 10%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(220, 15%, 10%);
+  --border: hsl(220, 14%, 85%);
+  --input: hsl(220, 14%, 85%);
+  --primary: hsl(217, 91%, 60%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(265, 80%, 68%);
+  --secondary-foreground: hsl(211, 100%, 99%);
+  --accent: hsl(160, 70%, 50%);
+  --accent-foreground: hsl(211, 100%, 99%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(217, 91%, 60%);
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: hsl(220, 15%, 8%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(220, 10%, 18%);
+  --muted-foreground: hsl(220, 10%, 60%);
+  --popover: hsl(220, 15%, 8%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(220, 15%, 8%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(220, 10%, 18%);
+  --input: hsl(220, 10%, 18%);
+  --primary: hsl(217, 91%, 60%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(265, 80%, 68%);
+  --secondary-foreground: hsl(211, 100%, 99%);
+  --accent: hsl(160, 70%, 50%);
+  --accent-foreground: hsl(211, 100%, 99%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(217, 91%, 60%);
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom animations */
+@keyframes pulse-recording {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-recording {
+  animation: pulse-recording 1s ease-in-out infinite;
+}
+
+/* Gradient backgrounds */
+.gradient-primary {
+  background: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(265, 80%, 68%) 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, hsl(265, 80%, 68%) 0%, hsl(217, 91%, 60%) 100%);
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: hsl(60, 4.8%, 95.9%);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(25, 5.3%, 44.7%);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(20, 14.3%, 4.1%);
+}
+
+/* Enhanced button styles */
+.btn-enhanced {
+  @apply relative overflow-hidden transition-all duration-300 transform hover:scale-105;
+}
+
+.btn-enhanced::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 transition-opacity duration-300;
+  transform: translateX(-100%);
+}
+
+.btn-enhanced:hover::before {
+  @apply opacity-20;
+  transform: translateX(100%);
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Improved card hover effects */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:scale-105;
+}
+
+/* Header height fix */
+.h-18 {
+  height: 4.5rem;
+}
+
+/* Section backgrounds for intro */
+.section-intro {
+  @apply bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-xl shadow p-8;
+}
+
+/* Improved spacing for main containers */
+.main-container {
+  @apply max-w-5xl mx-auto px-4 py-16;
+}
+
+/* Improved focus ring for accessibility */
+:focus-visible {
+  outline: 2px solid hsl(207, 90%, 54%);
+  outline-offset: 2px;
+}
+
+/* Subtle shadow for feature cards */
+.feature-card {
+  @apply shadow-lg hover:shadow-2xl transition-shadow duration-300;
+}

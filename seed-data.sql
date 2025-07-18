@@ -1,0 +1,50 @@
+-- Seed data for Tawasl Educational Platform
+
+-- Insert sample articles
+INSERT INTO articles (title, excerpt, content, category, author, published_at, read_time, image_url) VALUES
+('The Art of Active Listening', 'Master the essential skill of active listening to improve your communication and relationships.', 'Active listening is more than just hearing words. It involves giving full attention to the speaker, understanding their message, and responding thoughtfully. This comprehensive guide covers techniques like paraphrasing, asking clarifying questions, and providing nonverbal feedback. Learn how to avoid common listening barriers and develop empathy through better listening skills.', 'communication', 'Dr. Sarah Johnson', NOW(), 8, 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800'),
+('Body Language in Professional Settings', 'Understand how nonverbal cues can make or break your professional image.', 'Your body language speaks volumes before you even say a word. This article explores the key elements of professional body language including posture, eye contact, hand gestures, and facial expressions. Discover how to project confidence, build rapport, and avoid common body language mistakes that can undermine your credibility in professional settings.', 'body-language', 'Prof. Michael Chen', NOW(), 6, 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800'),
+('Conflict Resolution Strategies', 'Learn effective techniques for resolving conflicts in the workplace and personal relationships.', 'Conflicts are inevitable, but how you handle them determines the outcome. This guide presents proven conflict resolution strategies including the collaborative approach, compromise techniques, and when to use different resolution styles. Understand the root causes of conflicts and develop skills to transform disagreements into opportunities for growth and understanding.', 'conflict-resolution', 'Dr. Emily Rodriguez', NOW(), 10, 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800'),
+('Public Speaking Confidence', 'Overcome stage fright and deliver compelling presentations with confidence.', 'Public speaking anxiety affects 75% of people, but it can be overcome with the right techniques. This comprehensive guide covers preparation strategies, breathing exercises, visualization techniques, and practical tips for engaging your audience. Learn how to structure your content, use vocal variety, and handle unexpected situations during presentations.', 'public-speaking', 'James Wilson', NOW(), 12, 'https://images.unsplash.com/photo-1543269664-76bc3997d9ea?w=800'),
+('Emotional Intelligence in Communication', 'Develop your EQ to enhance your communication effectiveness and build stronger relationships.', 'Emotional intelligence is the foundation of effective communication. This article explores the four components of EQ: self-awareness, self-management, social awareness, and relationship management. Learn practical techniques for recognizing emotions, managing stress, understanding others perspectives, and building emotional connections that strengthen your communication skills.', 'emotional-intelligence', 'Dr. Lisa Thompson', NOW(), 9, 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800');
+
+-- Insert test categories
+INSERT INTO test_categories (name, description, duration, question_count, color, icon) VALUES
+('Active Listening', 'Test your ability to listen actively and understand others effectively', 15, 5, 'blue', 'ear'),
+('Body Language', 'Assess your knowledge of nonverbal communication cues', 20, 5, 'green', 'user'),
+('Conflict Resolution', 'Evaluate your conflict resolution skills and strategies', 25, 5, 'red', 'shield');
+
+-- Insert test questions for Active Listening
+INSERT INTO test_questions (category_id, question, options, correct_answer, explanation) VALUES
+(1, 'What is the first step in active listening?', '["Maintaining eye contact", "Preparing your response", "Giving full attention", "Taking notes"]', 'Giving full attention', 'Active listening begins with giving your full, undivided attention to the speaker.'),
+(1, 'Which technique involves restating what the speaker said in your own words?', '["Clarifying", "Paraphrasing", "Summarizing", "Reflecting"]', 'Paraphrasing', 'Paraphrasing shows you understand the message and helps clarify any misunderstandings.'),
+(1, 'What should you avoid while someone is speaking?', '["Nodding occasionally", "Interrupting to share your experience", "Maintaining eye contact", "Leaning forward"]', 'Interrupting to share your experience', 'Interrupting shifts focus away from the speaker and can make them feel unheard.'),
+(1, 'Which nonverbal cue shows you are actively listening?', '["Crossing your arms", "Looking at your phone", "Nodding and smiling", "Yawning"]', 'Nodding and smiling', 'Nodding and smiling are positive nonverbal cues that show engagement and understanding.'),
+(1, 'What is the purpose of asking clarifying questions?', '["To challenge the speaker", "To ensure understanding", "To change the topic", "To show disagreement"]', 'To ensure understanding', 'Clarifying questions help ensure you have understood the speaker correctly and show genuine interest.');
+
+-- Insert test questions for Body Language
+INSERT INTO test_questions (category_id, question, options, correct_answer, explanation) VALUES
+(2, 'What does maintaining eye contact typically communicate?', '["Aggression", "Confidence and interest", "Discomfort", "Disrespect"]', 'Confidence and interest', 'Appropriate eye contact communicates confidence, interest, and engagement in the conversation.'),
+(2, 'Which posture indicates openness and receptiveness?', '["Crossed arms", "Open arms and relaxed shoulders", "Slouched position", "Leaning away"]', 'Open arms and relaxed shoulders', 'Open arms and relaxed shoulders indicate openness and receptiveness to communication.'),
+(2, 'What does leaning forward typically signal?', '["Aggression", "Interest and engagement", "Discomfort", "Boredom"]', 'Interest and engagement', 'Leaning forward shows interest and engagement in what the other person is saying.'),
+(2, 'Which gesture should you avoid in professional settings?', '["Open palm gestures", "Pointing with index finger", "Nodding", "Handshake"]', 'Pointing with index finger', 'Pointing with the index finger can be perceived as aggressive or accusatory in professional settings.'),
+(2, 'What does a genuine smile involve?', '["Only the mouth", "Eyes and mouth", "Only the eyes", "No facial movement"]', 'Eyes and mouth', 'A genuine smile involves both the eyes (crow''s feet) and mouth, indicating authentic positive emotion.');
+
+-- Insert test questions for Conflict Resolution
+INSERT INTO test_questions (category_id, question, options, correct_answer, explanation) VALUES
+(3, 'What is the first step in resolving a conflict?', '["Taking sides", "Identifying the real issue", "Finding a compromise", "Avoiding the problem"]', 'Identifying the real issue', 'The first step is to identify the underlying issue, not just the surface problem.'),
+(3, 'Which approach focuses on finding a solution that satisfies both parties?', '["Competing", "Collaborating", "Avoiding", "Accommodating"]', 'Collaborating', 'Collaboration seeks to find a win-win solution that satisfies both parties'' needs.'),
+(3, 'What should you avoid during conflict resolution?', '["Using I statements", "Blaming and criticizing", "Active listening", "Finding common ground"]', 'Blaming and criticizing', 'Blaming and criticizing escalate conflicts rather than resolve them.'),
+(3, 'What is the purpose of using "I" statements?', '["To express your feelings", "To blame others", "To avoid responsibility", "To end the conversation"]', 'To express your feelings', '"I" statements help express your feelings and perspective without blaming others.'),
+(3, 'When should you consider bringing in a mediator?', '["Always", "When emotions are high and parties cannot communicate", "Never", "Only in legal disputes"]', 'When emotions are high and parties cannot communicate', 'A mediator can help when emotions are high and direct communication becomes difficult.');
+
+-- Insert sample FAQs
+INSERT INTO faqs (question, answer, category) VALUES
+('How can I improve my listening skills?', 'Practice active listening by giving full attention, avoiding interruptions, asking clarifying questions, and providing nonverbal feedback like nodding and maintaining eye contact.', 'communication'),
+('What are the most important body language cues?', 'Key body language cues include eye contact, posture, facial expressions, hand gestures, and personal space. These can communicate confidence, interest, openness, or discomfort.', 'body-language'),
+('How do I handle difficult conversations?', 'Prepare mentally, choose the right time and place, use "I" statements, listen actively, stay calm, and focus on finding solutions rather than assigning blame.', 'communication'),
+('What should I do if someone interrupts me?', 'Stay calm, politely ask to finish your thought, acknowledge their input, and then continue. If interruptions persist, address it directly but respectfully.', 'communication'),
+('How can I build confidence for public speaking?', 'Practice extensively, visualize success, use breathing techniques, start with smaller audiences, and focus on your message rather than your nervousness.', 'public-speaking'),
+('What are signs of poor listening?', 'Signs include interrupting, preparing responses while others speak, checking phones, looking distracted, and not asking follow-up questions.', 'communication'),
+('How do I read someone''s body language?', 'Observe clusters of cues rather than single gestures, consider context and cultural differences, and look for congruence between verbal and nonverbal messages.', 'body-language'),
+('What is the best way to resolve workplace conflicts?', 'Address issues early, focus on the problem not the person, use collaborative problem-solving, document agreements, and follow up to ensure resolution.', 'conflict-resolution'); 

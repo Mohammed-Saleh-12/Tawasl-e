@@ -1,0 +1,124 @@
+Product Requirements Document (PRD) for "Tawasl" Educational Platform
+Product Overview
+Tawasl is an educational platform designed to teach and improve basic communication skills. It will provide users with a variety of learning tools, including articles, tests, AI-powered performance evaluations, FAQs, and interactive features. The platform aims to enhance users' communication skills through tailored learning experiences, performance analysis, and real-time feedback.
+
+Target Audience
+Age Group: 18-45 years old
+
+Users: Students, professionals, and anyone interested in improving their communication skills
+
+Technological Requirements: Access to a modern browser on desktop or mobile
+
+Core Features
+1. Home Page
+Overview of Communication Skills: Brief introduction to the importance of communication skills.
+
+Featured Articles: Display the latest articles or educational content about communication skills.
+
+CTA (Call to Action): Buttons for starting the first test, checking FAQs, or accessing the video recording tool.
+
+Navigation: Links to articles, tests, FAQs, video analysis, and user profile.
+
+2. Article Section
+List of Articles: Display articles on various communication skills (e.g., verbal communication, non-verbal communication, active listening, etc.).
+
+Each article should have:
+
+Title
+
+A brief excerpt
+
+Author and date of publication
+
+CTA to read the full article
+
+Search Functionality: Users can search for articles by keywords.
+
+Article Details Page: Display the full article with text, images, and relevant links to tests.
+
+3. Skill Test Section
+Test Categories: Each test corresponds to a specific communication skill (e.g., Verbal Communication, Body Language, Active Listening, etc.).
+
+Test UI/UX:
+
+Multiple-choice questions (MCQs), true/false, and scenario-based questions.
+
+Timer for each test section.
+
+User can submit answers and immediately receive feedback.
+
+AI-Powered Analysis: After completing a test, AI analyzes the answers and provides the following:
+
+Performance Evaluation: Score and breakdown of the user's proficiency in each skill.
+
+Tips for Improvement: Based on test results, the AI offers personalized tips for improving the user's performance.
+
+Test History: Users can view their past test results and track improvement.
+
+4. FAQ Section
+Skill-Specific FAQs: Display a list of frequently asked questions and answers for each communication skill.
+
+Search Functionality: Users can search for specific questions or browse by skill type.
+
+Expand/Collapse Answers: Simple UI for expanding and collapsing answers.
+
+5. AI Dialog Box for Communication Skills
+Interactive Chatbot: AI chatbot to simulate a real conversation, allowing users to practice their communication skills.
+
+Voice and Text Interaction: The user can type or use voice input for the conversation.
+
+Skill Focus: The chatbot can focus on specific skills such as active listening or providing feedback.
+
+Real-Time Feedback: After each conversation, the chatbot will provide feedback on the user's communication style (e.g., clarity, tone, politeness).
+
+Personality Analysis: AI can analyze the user's tone, words used, and response time to evaluate their communication effectiveness.
+
+6. Video Recording and Analysis Tool
+Video Recording: Users can record themselves practicing communication skills (e.g., delivering a presentation, making an argument, or participating in a mock conversation).
+
+The interface should have options to start, pause, and stop the recording.
+
+Users should be able to upload the recorded video or take a new one directly on the platform.
+
+AI-Powered Analysis:
+
+Facial Recognition: AI analyzes facial expressions to gauge emotions such as confidence, anxiety, and engagement.
+
+Eye Movement Analysis: Detects whether the user is making eye contact and whether it aligns with the communication context.
+
+Hand Movements Analysis: Tracks if hand gestures are used appropriately in the communication context.
+
+Performance Report:
+
+Score: A performance score is generated based on the analysis of facial expressions, eye contact, and hand gestures.
+
+Feedback: The AI offers detailed feedback on areas for improvement (e.g., "Try to make more eye contact," "You appeared more confident with better facial expressions").
+
+Video Library: Users can save their video recordings and revisit them for self-assessment and progress tracking.
+
+User Flow
+Landing Page
+
+User lands on the homepage and can choose from the following:
+
+Start a test
+
+Read an article
+
+Check FAQs
+
+Use the AI Dialog Box
+
+Record a video
+
+Article Page
+
+User clicks on an article, reads through the content, and optionally takes a related test.
+
+Test Page
+
+User selects a communication skill and begins a test.
+
+After submitting answers, the user receives an AI-generated evaluation and improvement tips.
+
+AI Dialog Box
