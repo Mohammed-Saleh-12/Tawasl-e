@@ -64,15 +64,16 @@ export async function analyzeVideoWithAI(
   try {
     // Convert video buffer to base64
     const videoData = videoBuffer.toString('base64');
+    console.log({ videoData, scenario, duration });
     // Call the Flask AI service
     const response = await axios.post(
       process.env.AI_SERVICE_URL || 'http://tawasl-ai-video-analysis:8000/analyze',
       {
-        video_path: videoData,
-        scenario,
-        duration
+        video_path: videoData,   // must be a non-empty string
+        scenario,                // must be a non-empty string
+        duration                 // must be a valid number
       },
-      { timeout: 120000 } // 2 minute timeout for long video analysis
+      { timeout: 120000 }
     );
     return response.data;
   } catch (error: any) {
