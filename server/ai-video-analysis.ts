@@ -5,6 +5,7 @@ import { writeFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
 import { tmpdir } from 'os';
 import { Buffer } from 'buffer';
+import { spawnSync } from 'child_process';
 
 export interface AIAnalysisResult {
   overallScore: number;
@@ -76,7 +77,7 @@ export async function analyzeVideoWithAI(
     return response.data;
   } catch (error: any) {
     console.error('AI service error:', error.response?.data || error.message);
-    // Return zero scores instead of mock analysis
+        // Return zero scores instead of mock analysis
     return {
       overallScore: 0,
       eyeContactScore: 0,
